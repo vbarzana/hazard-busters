@@ -1,0 +1,7 @@
+{
+  "name": "hazard-busters",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}

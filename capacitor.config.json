@@ -1,0 +1,13 @@
+{
+  "appId": "io.ionic.starter",
+  "appName": "hazard-busters",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "build",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  },
+  "cordova": {}
+}
