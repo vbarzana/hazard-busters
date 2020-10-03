@@ -1,7 +1,21 @@
 import React, { useState } from 'react';
+
+import {
+  IonButton,
+  IonInput,
+  IonContent,
+  IonButtons,
+  IonHeader,
+  IonToolbar,
+  IonTitle,
+  IonItem,
+  IonLabel,
+  IonText,
+  IonImg,
+  IonPage
+} from '@ionic/react';
+
 import './sign-in.styes.scss';
-import FormInput from '../generic/form-input/form-input.component';
-import CustomButton from '../generic/custom-button/custom-button.component';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
@@ -12,11 +26,14 @@ import {
   emailSignInStart
 } from '../../redux/user/user.actions';
 
+import { useHistory } from 'react-router';
+
 const SignIn = ({ emailSignInStart, googleSignInStart, error }) => {
   const [userCredentials, setCredentials] = useState({
     email: '',
     password: ''
   });
+  const history = useHistory();
 
   const { email, password } = userCredentials;
 
@@ -26,48 +43,81 @@ const SignIn = ({ emailSignInStart, googleSignInStart, error }) => {
   };
 
   const handleChange = event => {
+    console.log('changed ', event);
     const { value, name } = event.target;
     setCredentials({ ...userCredentials, [name]: value });
   };
 
   return (
-    <div className='sign-in'>
-      <h2>I already have an account</h2>
-      <span>Sign in with your email and password</span>
-      <form onSubmit={handleSubmit}>
-        <FormInput
-          name='email'
-          type='email'
-          value={email}
-          autoComplete='email'
-          label='Email'
-          handleChange={handleChange}
-          required
-        />
-        <FormInput
-          name='password'
-          type='password'
-          label='Password'
-          autoComplete='password'
-          value={password}
-          handleChange={handleChange}
-          required
-        />
-        <span style={{ color: 'red', display: 'flex', paddingBottom: '25px' }}>
-          {error}
-        </span>
-        <div className='buttons'>
-          <CustomButton type='submit'>Sign In</CustomButton>
-          <CustomButton
-            type='button'
-            onClick={googleSignInStart}
-            isGoogleSignIn
-          >
-            Sign In With Google
-          </CustomButton>
-        </div>
-      </form>
-    </div>
+    <IonPage>
+      <IonHeader>
+        <IonToolbar color='light'>
+          <IonButtons slot='start' />
+          <IonTitle>Login</IonTitle>
+        </IonToolbar>
+      </IonHeader>
+      <IonContent>
+        <p align='center' style={{ width: '100%' }}>
+          <IonImg
+            style={{ width: '100px' }}
+            src={process.env.PUBLIC_URL + '/assets/hazard-buster-logo.png'}
+            alt='Logo'
+          />
+        </p>
+        <form onSubmit={handleSubmit}>
+          <IonText color='danger' padding style={{ color: 'red', display: 'flex', margin: 10 }}>
+            {error}
+          </IonText>
+
+          <IonItem>
+            <IonLabel position='floating'>Email Address</IonLabel>
+            <IonInput
+              name='email'
+              type='email'
+              value={email}
+              autoComplete='email'
+              onIonChange={handleChange}
+              required
+            />
+          </IonItem>
+          <IonItem>
+            <IonLabel position='floating'>Password</IonLabel>
+            <IonInput
+              name='password'
+              type='password'
+              autoComplete='password'
+              value={password}
+              onIonChange={handleChange}
+              required
+            />
+          </IonItem>
+          <div style={{ padding: 10, paddingTop: 20 }}>
+            <IonButton type='submit' expand='full'>
+              Sign In
+            </IonButton>
+
+            <IonButton
+              type='button'
+              onClick={googleSignInStart}
+              isGoogleSignIn
+              expand='full'
+            >
+              Sign In With Google
+            </IonButton>
+            <IonLabel
+              expand='full'
+              style={{ margin: 20 }}
+              onClick={e => {
+                e.preventDefault();
+                history.push('/signup');
+              }}
+            >
+              Don't have an account? Sign up
+            </IonLabel>
+          </div>
+        </form>
+      </IonContent>
+    </IonPage>
   );
 };
 

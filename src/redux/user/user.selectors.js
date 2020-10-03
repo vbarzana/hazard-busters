@@ -8,9 +8,11 @@ export const selectCurrentUser = createSelector(
 );
 
 export const selectSignUpError = createSelector([selectUser], user =>
-  user.signUpError ? user.signUpError.toString() : null
+  user.signUpError
+    ? user.signUpError.message || user.signUpError.toString()
+    : ''
 );
 
 export const selectError = createSelector([selectUser], user =>
-  user.error ? user.error.toString() : null
+  user.error ? user.error.message || user.error.toString() : ''
 );

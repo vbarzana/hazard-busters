@@ -1,12 +1,25 @@
 import React, { useState } from 'react';
+import {
+  IonButton,
+  IonInput,
+  IonContent,
+  IonButtons,
+  IonHeader,
+  IonToolbar,
+  IonTitle,
+  IonImg,
+  IonItem,
+  IonLabel,
+  IonPage
+} from '@ionic/react';
+
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
-import FormInput from '../generic/form-input/form-input.component';
-import CustomButton from '../generic/custom-button/custom-button.component';
-
 import { emailSignUpStart } from '../../redux/user/user.actions';
 import { selectSignUpError } from '../../redux/user/user.selectors';
+
+import { useHistory } from 'react-router';
 
 import './sign-up.styles.scss';
 
@@ -19,6 +32,8 @@ const SignUp = ({ emailSignUpStart, signUpError }) => {
   });
 
   const { displayName, email, password, confirmPassword } = userCredentials;
+
+  const history = useHistory();
 
   const handleSubmit = async event => {
     event.preventDefault();
@@ -40,52 +55,95 @@ const SignUp = ({ emailSignUpStart, signUpError }) => {
   };
 
   return (
-    <div className='sign-up'>
-      <h2 className='title'>I do not have an account</h2>
-      <span>Sign up with your email and password</span>
-      <form className='sign-up-form' onSubmit={handleSubmit}>
-        <FormInput
-          type='text'
-          name='displayName'
-          value={displayName}
-          onChange={handleChange}
-          label='Display Name'
-          autoComplete='displayName'
-          required
-        />
-        <FormInput
-          type='email'
-          name='email'
-          value={email}
-          autoComplete='new-email'
-          onChange={handleChange}
-          label='Email'
-          required
-        />
-        <FormInput
-          type='password'
-          name='password'
-          value={password}
-          autoComplete='new-password'
-          onChange={handleChange}
-          label='Password'
-          required
-        />
-        <FormInput
-          type='password'
-          name='confirmPassword'
-          autoComplete='new-password-confirm'
-          value={confirmPassword}
-          onChange={handleChange}
-          label='Confirm password'
-          required
-        />
-        <span style={{ color: 'red', display: 'flex', paddingBottom: '25px' }}>
-          {signUpError}
-        </span>
-        <CustomButton type='submit'> SIGN UP </CustomButton>
-      </form>
-    </div>
+    <IonPage>
+      <IonHeader>
+        <IonToolbar color='light'>
+          <IonButtons slot='start' />
+          <IonTitle>Sign up</IonTitle>
+        </IonToolbar>
+      </IonHeader>
+      <IonContent>
+        <div className='sign-up'>
+          <form className='sign-up-form' onSubmit={handleSubmit}>
+            <p align='center' style={{ width: '100%' }}>
+              <IonImg
+                style={{ width: '100px' }}
+                src={process.env.PUBLIC_URL + '/assets/hazard-buster-logo.png'}
+                alt='Logo'
+              />
+            </p>
+            <IonItem>
+              <IonLabel position='floating'>Email Address</IonLabel>
+              <IonInput
+                type='text'
+                name='displayName'
+                value={displayName}
+                onIonChange={handleChange}
+                label='Display Name'
+                autoComplete='displayName'
+                required
+              />
+            </IonItem>
+            <IonItem>
+              <IonLabel position='floating'>Email Address</IonLabel>
+              <IonInput
+                type='email'
+                name='email'
+                value={email}
+                autoComplete='new-email'
+                onIonChange={handleChange}
+                label='Email'
+                required
+              />
+            </IonItem>
+            <IonItem>
+              <IonLabel position='floating'>Password</IonLabel>
+              <IonInput
+                type='password'
+                name='password'
+                value={password}
+                autoComplete='new-password'
+                onIonChange={handleChange}
+                required
+              />
+            </IonItem>
+            <IonItem>
+              <IonLabel position='floating'>Confirm password</IonLabel>
+              <IonInput
+                type='password'
+                name='confirmPassword'
+                autoComplete='new-password-confirm'
+                value={confirmPassword}
+                onIonChange={handleChange}
+                required
+              />
+            </IonItem>
+            <span
+              style={{ color: 'red', display: 'flex', margin: 10 }}
+            >
+              {signUpError}
+            </span>
+            <div style={{ padding: 10 }}>
+              <IonButton
+                type='submit'
+                expand='full'
+                style={{ marginBottom: 10 }}
+              >
+                Sign Up
+              </IonButton>
+              <IonLabel
+                onClick={e => {
+                  e.preventDefault();
+                  history.push('/signin');
+                }}
+              >
+                Already have an account? Sign in
+              </IonLabel>
+            </div>
+          </form>
+        </div>
+      </IonContent>
+    </IonPage>
   );
 };
 
