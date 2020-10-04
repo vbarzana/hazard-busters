@@ -2,6 +2,7 @@
   "name": "hazard-busters",
   "version": "0.0.1",
   "private": true,
+  "homepage": "http://vbarzana.github.io/hazard-busters",
   "dependencies": {
     "@capacitor/core": "2.4.2",
     "@ionic/react": "^5.0.7",
@@ -35,6 +36,8 @@
     "typescript": "3.8.3"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
