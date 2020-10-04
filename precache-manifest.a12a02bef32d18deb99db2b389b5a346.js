@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "a17c54a22d77d8ccf3a45351c9bb5ce3",
+    "revision": "ea4f4e54bffcaed8e5811b0f31b2c6f3",
     "url": "/hazard-busters/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/hazard-busters/static/css/4.8921c4c4.chunk.css"
   },
   {
-    "revision": "afee7a67ca1b0d70048e",
+    "revision": "c4437e54db4df65b9743",
     "url": "/hazard-busters/static/css/main.bb64c975.chunk.css"
   },
   {
@@ -252,8 +252,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/hazard-busters/static/js/9.79fe69ae.chunk.js"
   },
   {
-    "revision": "afee7a67ca1b0d70048e",
-    "url": "/hazard-busters/static/js/main.54d75ede.chunk.js"
+    "revision": "c4437e54db4df65b9743",
+    "url": "/hazard-busters/static/js/main.76b8af63.chunk.js"
   },
   {
     "revision": "68ed6098b0fe0b5f3737",
