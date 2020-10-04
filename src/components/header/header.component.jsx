@@ -44,7 +44,12 @@ const Header = ({ title, currentUser, signOutStart }) => {
         <img
           src={`${PUBLIC_URL}/assets/hazard-buster-logo.png`}
           alt='Hazard Busters logo'
-          style={{ width: 25, float: 'left', marginLeft: 10 }}
+          style={{
+            width: 25,
+            float: 'left',
+            marginLeft: 10,
+            cursor: 'pointer'
+          }}
           onClick={e => {
             e.preventDefault();
             history.push(`${PUBLIC_URL}/map`);
