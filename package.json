@@ -2,7 +2,7 @@
   "name": "hazard-busters",
   "version": "0.0.1",
   "private": true,
-  "homepage": "http://vbarzana.github.io/hazard-busters",
+  "homepage": "https://vbarzana.github.io/hazard-busters",
   "dependencies": {
     "@capacitor/core": "2.4.2",
     "@ionic/react": "^5.0.7",
