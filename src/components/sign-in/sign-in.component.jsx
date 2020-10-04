@@ -52,7 +52,7 @@ const SignIn = ({ emailSignInStart, googleSignInStart, error }) => {
       <IonHeader>
         <IonToolbar color='light'>
           <IonButtons slot='start' />
-          <IonTitle>Login</IonTitle>
+          <IonTitle>Sign in</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent>
