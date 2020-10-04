@@ -10,14 +10,14 @@ import {
   IonTabs
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { notifications, square, map } from 'ionicons/icons';
+import { flame, people, map } from 'ionicons/icons';
 
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
-import Map from './pages/map/map.component';
-import Tab2 from './pages/notifications/notifications.component';
-import Tab3 from './pages/Tab3';
+import Map from './components/map/map-container.component';
+import Notifications from './pages/notifications/notifications.component';
+import About from './pages/about/about.component';
 import SignIn from './components/sign-in/sign-in.component';
 import SignUp from './components/sign-up/sign-up.component';
 
@@ -42,7 +42,6 @@ import './theme/variables.css';
 
 import { selectCurrentUser } from './redux/user/user.selectors';
 import { checkUserSession } from './redux/user/user.actions';
-import PrivateRoute from './components/private-route/private-route.component';
 
 const App = ({ currentUser }) => {
   useEffect(() => {
@@ -54,9 +53,9 @@ const App = ({ currentUser }) => {
       <IonReactRouter>
         <IonTabs>
           <IonRouterOutlet>
-            <PrivateRoute path='/map' component={Map} exact />
-            <PrivateRoute path='/tab2' component={Tab2} exact />
-            <PrivateRoute path='/tab3' component={Tab3} exact />
+            <Route path='/map' component={Map} exact />
+            <Route path='/notifications' component={Notifications} exact />
+            <Route path='/about' component={About} exact />
             <Route
               exact
               path='/signin'
@@ -78,12 +77,12 @@ const App = ({ currentUser }) => {
               <IonIcon icon={map} />
               <IonLabel>Map</IonLabel>
             </IonTabButton>
-            <IonTabButton tab='notifications' href='/notifications'>
-              <IonIcon icon={notifications} />
-              <IonLabel>Notifications</IonLabel>
+            <IonTabButton tab='hazards' href='/hazards'>
+              <IonIcon icon={flame} />
+              <IonLabel>Hazards</IonLabel>
             </IonTabButton>
-            <IonTabButton tab='tab3' href='/tab3'>
-              <IonIcon icon={square} />
+            <IonTabButton tab='about' href='/about'>
+              <IonIcon icon={people} />
               <IonLabel>About</IonLabel>
             </IonTabButton>
           </IonTabBar>

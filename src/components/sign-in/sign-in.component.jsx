@@ -43,7 +43,6 @@ const SignIn = ({ emailSignInStart, googleSignInStart, error }) => {
   };
 
   const handleChange = event => {
-    console.log('changed ', event);
     const { value, name } = event.target;
     setCredentials({ ...userCredentials, [name]: value });
   };
@@ -65,7 +64,11 @@ const SignIn = ({ emailSignInStart, googleSignInStart, error }) => {
           />
         </p>
         <form onSubmit={handleSubmit}>
-          <IonText color='danger' padding style={{ color: 'red', display: 'flex', margin: 10 }}>
+          <IonText
+            color='danger'
+            padding
+            style={{ color: 'red', display: 'flex', margin: 10 }}
+          >
             {error}
           </IonText>
 

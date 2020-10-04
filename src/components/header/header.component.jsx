@@ -20,9 +20,12 @@ import { selectCurrentUser } from '../../redux/user/user.selectors';
 import { signOutStart } from '../../redux/user/user.actions';
 
 import { cog, personCircle, search, notifications, exit } from 'ionicons/icons';
+import { useHistory } from 'react-router';
 
 const Header = ({ title, currentUser, signOutStart }) => {
   const [showPopover, setShowPopover] = useState(false);
+  const history = useHistory();
+
   const getAvatarForCurrentUser = () => {
     if (currentUser && currentUser.email) {
       const username = md5(
@@ -38,9 +41,26 @@ const Header = ({ title, currentUser, signOutStart }) => {
   return (
     <IonHeader>
       <IonToolbar>
+        <img
+          src={`${process.env.PUBLIC_URL}/assets/hazard-buster-logo.png`}
+          alt='Hazard Busters logo'
+          style={{ width: 25, float: 'left', marginLeft: 10 }}
+          onClick={e => {
+            e.preventDefault();
+            history.push('/map');
+          }}
+        />
         <IonButtons slot='secondary'>
           <IonButton>
             <IonIcon slot='icon-only' icon={search} />
+          </IonButton>
+          <IonButton
+            onClick={e => {
+              e.preventDefault();
+              history.push('/notifications');
+            }}
+          >
+            <IonIcon icon={notifications} slot='icon-only' />
           </IonButton>
           <IonButton onClick={() => setShowPopover(true)}>
             {avatar ? (
@@ -61,10 +81,6 @@ const Header = ({ title, currentUser, signOutStart }) => {
               <IonItem>
                 <IonLabel>Settings</IonLabel>
                 <IonIcon icon={cog} size='large' slot='end' />
-              </IonItem>
-              <IonItem>
-                <IonLabel>Notifications</IonLabel>
-                <IonIcon icon={notifications} size='large' slot='end' />
               </IonItem>
               <IonItem onClick={signOutStart}>
                 <IonLabel>Logout</IonLabel>
