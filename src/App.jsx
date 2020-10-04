@@ -42,6 +42,7 @@ import './theme/variables.css';
 
 import { selectCurrentUser } from './redux/user/user.selectors';
 import { checkUserSession } from './redux/user/user.actions';
+const PUBLIC_URL = process.env.PUBLIC_URL;
 
 const App = ({ currentUser }) => {
   useEffect(() => {
@@ -53,35 +54,49 @@ const App = ({ currentUser }) => {
       <IonReactRouter>
         <IonTabs>
           <IonRouterOutlet>
-            <Route path='/map' component={Map} exact />
-            <Route path='/notifications' component={Notifications} exact />
-            <Route path='/about' component={About} exact />
+            <Route path={`${PUBLIC_URL}/map`} component={Map} exact />
+            <Route
+              path={`${PUBLIC_URL}/notifications`}
+              component={Notifications}
+              exact
+            />
+            <Route path={`${PUBLIC_URL}/about`} component={About} exact />
             <Route
               exact
-              path='/signin'
-              render={() => (currentUser ? <Redirect to='/' /> : <SignIn />)}
+              path={`${PUBLIC_URL}/signin`}
+              render={() =>
+                currentUser ? <Redirect to={`${PUBLIC_URL}/`} /> : <SignIn />
+              }
             />
             <Route
               exact
-              path='/signup'
-              render={() => (currentUser ? <Redirect to='/' /> : <SignUp />)}
+              path={`${PUBLIC_URL}/signup`}
+              render={() =>
+                currentUser ? <Redirect to={`${PUBLIC_URL}/`} /> : <SignUp />
+              }
             />
             <Route
-              path='/'
+              path={`${PUBLIC_URL}/`}
               exact
-              render={() => <Redirect to={!currentUser ? '/signin' : '/map'} />}
+              render={() => (
+                <Redirect
+                  to={
+                    !currentUser ? `${PUBLIC_URL}/signin` : `${PUBLIC_URL}/map`
+                  }
+                />
+              )}
             />
           </IonRouterOutlet>
           <IonTabBar slot='bottom'>
-            <IonTabButton tab='map' href='/map'>
+            <IonTabButton tab='map' href={`${PUBLIC_URL}/map`}>
               <IonIcon icon={map} />
               <IonLabel>Map</IonLabel>
             </IonTabButton>
-            <IonTabButton tab='hazards' href='/hazards'>
+            <IonTabButton tab='hazards' href={`${PUBLIC_URL}/hazards`}>
               <IonIcon icon={flame} />
               <IonLabel>Hazards</IonLabel>
             </IonTabButton>
-            <IonTabButton tab='about' href='/about'>
+            <IonTabButton tab='about' href={`${PUBLIC_URL}/about`}>
               <IonIcon icon={people} />
               <IonLabel>About</IonLabel>
             </IonTabButton>

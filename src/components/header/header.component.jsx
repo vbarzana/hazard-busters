@@ -37,17 +37,17 @@ const Header = ({ title, currentUser, signOutStart }) => {
     }
   };
   const avatar = getAvatarForCurrentUser();
-
+  const PUBLIC_URL = process.env.PUBLIC_URL;
   return (
     <IonHeader>
       <IonToolbar>
         <img
-          src={`${process.env.PUBLIC_URL}/assets/hazard-buster-logo.png`}
+          src={`${PUBLIC_URL}/assets/hazard-buster-logo.png`}
           alt='Hazard Busters logo'
           style={{ width: 25, float: 'left', marginLeft: 10 }}
           onClick={e => {
             e.preventDefault();
-            history.push('/map');
+            history.push(`${PUBLIC_URL}/map`);
           }}
         />
         <IonButtons slot='secondary'>
@@ -57,7 +57,7 @@ const Header = ({ title, currentUser, signOutStart }) => {
           <IonButton
             onClick={e => {
               e.preventDefault();
-              history.push('/notifications');
+              history.push(`${PUBLIC_URL}/notifications`);
             }}
           >
             <IonIcon icon={notifications} slot='icon-only' />
@@ -82,7 +82,13 @@ const Header = ({ title, currentUser, signOutStart }) => {
                 <IonLabel>Settings</IonLabel>
                 <IonIcon icon={cog} size='large' slot='end' />
               </IonItem>
-              <IonItem onClick={signOutStart}>
+              <IonItem
+                onClick={() => {
+                  signOutStart();
+                  setShowPopover(false);
+                  history.push(`${PUBLIC_URL}/signin`);
+                }}
+              >
                 <IonLabel>Logout</IonLabel>
                 <IonIcon icon={exit} size='large' slot='end' />
               </IonItem>
