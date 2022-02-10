@@ -21,7 +21,7 @@
     "google-maps-react": "^2.0.6",
     "ionicons": "^5.0.0",
     "md5": "^2.3.0",
-    "node-sass": "^4.14.1",
+    "node-sass": "^7.0.0",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-redux": "^7.2.1",
